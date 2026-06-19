@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+
+
+:root {
+  font-family: "Space Grotesk", sans-serif;
+
+  --PortfolioGrayishBlack: #262626;
+  --PortfolioPurple: #6255ed;
+  --PortfolioBlack: #141414;
+  --PortfoliohWhite: #fcfcfc;
+  --PortfolioGreen: #454545;
+  --PortfolioBg: #897527;
+  --PortfolioBgTwo: #7c4191;
+  --PortfolioBgThree: #43868a;
+}
+
+
+.dark {
+  /* Dark Mode switch configurations */
+  --PortfolioBlack: #030712;  /* your deep dark canvas */
+  --PortfoliohWhite: #f4f4f5; /* clean light text */
+  --PortfolioPurple: #a855f7; 
+}
+
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px; 
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--PortfolioBlack);
+  color: var(--PortfoliohWhite);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
