@@ -54,7 +54,7 @@ export function Projects() {
         {/* Section Header */}
         <div className="mb-20">
           <p className="text-xs font-mono font-bold tracking-widest text-[var(--PortfolioPurple)] uppercase mb-3">
-            // PRODUCTION_SHIPPED
+            // Deployments
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--PortfoliohWhite)]">
             Featured Projects
@@ -70,7 +70,6 @@ export function Projects() {
                 key={project.id}
                 className="w-full rounded-2xl border border-[var(--PortfolioPurple)]/20 bg-zinc-950/20 backdrop-blur-xs p-6 lg:p-8 flex flex-col lg:flex-row gap-8 items-stretch transition-all duration-300 hover:border-[var(--PortfolioPurple)]/40 hover:shadow-[0_0_30px_rgba(147,51,234,0.05)]"
               >
-                {/* Core Technical Copy Card */}
                 <div className={`flex-1 flex flex-col justify-between ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                   <div>
                     <span className="font-mono text-xs font-semibold tracking-wider text-zinc-500 block mb-2">
@@ -83,7 +82,7 @@ export function Projects() {
                       {project.description}
                     </p>
 
-                    {/* Tech Tags Matrix */}
+                    {/*  Tags */}
                     <div className="flex flex-wrap gap-2 mb-8">
                       {project.tags.map((tag) => (
                         <span
@@ -96,7 +95,7 @@ export function Projects() {
                     </div>
                   </div>
 
-                  {/* View Live Call to Action */}
+                  {/* View Live button */}
                   <div>
                     <a
                       href={project.liveUrl}
@@ -112,7 +111,7 @@ export function Projects() {
                   </div>
                 </div>
 
-                {/* Right Side Mock Browser Container displaying the real Homepage Image Asset */}
+                {/* Right Side  */}
                 <div className={`flex-1 min-h-[320px] sm:min-h-[380px] rounded-xl border border-[var(--PortfolioPurple)]/20 bg-zinc-950/40 flex flex-col overflow-hidden group relative ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
 
                   {/* Browser Header Bar */}
@@ -140,8 +139,6 @@ export function Projects() {
                     </div>
                   </div>
 
-                  {/* Project Graphic Frame Display Window */}
-                  {/* Project Graphic Frame Display Window */}
                   <div className="flex-1 w-full bg-zinc-950/20 relative overflow-hidden flex items-center justify-center min-h-[240px] sm:min-h-[320px] lg:min-h-full">
                     <img
                       src={project.imagePath}

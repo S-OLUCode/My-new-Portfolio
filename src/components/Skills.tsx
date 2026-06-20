@@ -59,7 +59,7 @@ export function Skills() {
         <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <p className="text-xs font-mono font-bold tracking-widest text-[var(--PortfolioPurple)] uppercase mb-3">
-              // TECHNICAL_ENVIRONMENT_MATRIX
+              // skills set
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--PortfoliohWhite)]">
               Verified Stack Capabilities
