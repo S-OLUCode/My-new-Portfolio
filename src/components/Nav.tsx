@@ -102,8 +102,8 @@ export function Nav() {
           >
             <div
               className={`h-5.5 w-5.5 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${isDarkMode
-                  ? 'translate-x-6 bg-[var(--PortfolioPurple)] text-[var(--PortfoliohWhite)] shadow-[0_0_10px_rgba(147,51,234,0.6)]'
-                  : 'translate-x-0 bg-white text-[var(--PortfolioPurple)] shadow-[0_2px_6px_rgba(0,0,0,0.15)]'
+                ? 'translate-x-6 bg-[var(--PortfolioPurple)] text-[var(--PortfoliohWhite)] shadow-[0_0_10px_rgba(147,51,234,0.6)]'
+                : 'translate-x-0 bg-white text-[var(--PortfolioPurple)] shadow-[0_2px_6px_rgba(0,0,0,0.15)]'
                 }`}
             >
               {isDarkMode ? (
@@ -119,13 +119,15 @@ export function Nav() {
           </button>
 
           <a
-            href="#cv"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--PortfolioPurple)]/10 border border-[var(--PortfolioPurple)]/20 text-[var(--PortfolioPurple)] text-sm font-bold tracking-wide hover:bg-[var(--PortfolioPurple)] hover:text-[var(--PortfoliohWhite)] transition-all duration-300 shadow-sm shadow-purple-500/5 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)] active:scale-98 group"
+            href="/SayoCv.pdf"
+            download="Sayo_Ogunfunminiyi-Tayo_ResumeSayo.pdf"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--PortfolioPurple)]/10 border border-[var(--PortfolioPurple)]/20 text-[var(--PortfoliohWhite)] text-sm font-bold tracking-wide hover:bg-[var(--PortfolioPurple)] transition-all duration-300 shadow-sm shadow-purple-500/5 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)] active:scale-98 cursor-pointer"
           >
-            <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            {/* Your existing download SVG icon goes here */}
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
             </svg>
-            <span className="uppercase font-mono tracking-widest text-xs">Download CV</span>
+            <span>Download CV</span>
           </a>
         </div>
       </div>
