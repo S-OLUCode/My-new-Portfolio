@@ -35,7 +35,7 @@ export function Contact() {
                         Let's Work Together.
                     </h2>
                     <p className="text-zinc-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-                        Looking for a full-stack engineer who ships? I'm open to full-time, contract and AgriTech collaborations.
+                        Looking for a full-stack engineer who ships? I'm open to full-time, contract and collaborations.
                     </p>
                 </div>
 

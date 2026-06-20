@@ -13,7 +13,7 @@ interface ProjectItem {
 const PROJECTS_DATA: ProjectItem[] = [
   {
     id: "01",
-    serviceTag: "APPLICATION.01",
+    serviceTag: "Project.01",
     title: "Miles Car Rental",
     description: "A modern car rental platform with a focus on user experience and operational efficiency. Features include real-time vehicle availability, secure booking processes, and a responsive design for seamless access across devices.",
     tags: ["React", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB", "Zod"],
@@ -24,7 +24,7 @@ const PROJECTS_DATA: ProjectItem[] = [
   },
   {
     id: "02",
-    serviceTag: "APPLICATION.02",
+    serviceTag: "Project.02",
     title: "Laundry Wash Platform",
     description: "A production-grade digital laundry service solution built with deep type-safety. Features an optimized booking management system, transparent item-tier calculations, reactive scheduling, and secure transactional pipelines.",
     tags: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Zod"],
@@ -35,7 +35,7 @@ const PROJECTS_DATA: ProjectItem[] = [
   },
   {
     id: "03",
-    serviceTag: "APPLICATION.03",
+    serviceTag: "Project.03",
     title: "Task Duty",
     description: "A high-efficiency task tracking and productivity platform designed for structured workflow execution. Features state-driven board mechanics, custom lifecycle controls, and robust validation architectures to organize development operations smoothly.",
     tags: ["React", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB", "Zod"],
