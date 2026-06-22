@@ -1,10 +1,34 @@
-import { useForm, ValidationError } from '@formspree/react';
+import { useForm as useReactHookForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm as useFormspreeForm } from '@formspree/react';
+import { contactSchema, type ContactFormData } from '../utils/SchemaTypes';
 
 export function Contact() {
-    // Connects to Formspree using your unique form endpoint string
-    const [state, handleSubmit] = useForm('xwvjddkb');
+    // 1. Connects to Formspree for the backend delivery layer
+    const [formspreeState, sendToFormspree] = useFormspreeForm('xwvjddkb');
 
-    if (state.succeeded) {
+    // 2. Setup React Hook Form linked up with your Zod validation rules
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useReactHookForm<ContactFormData>({
+        resolver: zodResolver(contactSchema),
+        mode: 'onChange',
+        defaultValues: {
+            name: '',
+            email: '',
+            message: '',
+        },
+    });
+
+    // 3. Hand off pristine client-validated data directly into Formspree execution window
+    const onSubmit = async (data: ContactFormData) => {
+        await sendToFormspree(data);
+    };
+
+    // Render success message when Formspree finishes uploading payload successfully
+    if (formspreeState.succeeded) {
         return (
             <section id="contact" className="w-full bg-[var(--PortfolioBlack)] py-24 border-b border-zinc-900/50 flex items-center justify-center">
                 <div className="text-center space-y-4 max-w-md mx-auto px-4">
@@ -105,7 +129,7 @@ export function Contact() {
 
                     {/* Right Column: High Fidelity Contact Form Sheet */}
                     <form
-                        onSubmit={handleSubmit}
+                        onSubmit={handleSubmit(onSubmit)}
                         className="lg:col-span-7 rounded-2xl border border-zinc-900 bg-zinc-950/20 backdrop-blur-xs p-5 sm:p-8 space-y-5 sm:space-y-6"
                     >
                         {/* Split layout row for Name and Email */}
@@ -119,12 +143,15 @@ export function Contact() {
                                 <input
                                     type="text"
                                     id="name"
-                                    name="name"
-                                    required
                                     placeholder="Recruiter"
+                                    {...register('name')}
                                     className="w-full bg-[#0b0f19]/60 border border-zinc-900 rounded-xl px-4 py-3 sm:py-3.5 text-zinc-200 text-sm placeholder-zinc-700 focus:outline-hidden focus:border-[var(--PortfolioPurple)]/40 focus:bg-[#0b0f19] transition-all duration-200"
                                 />
-                                <ValidationError field="name" prefix="Name" errors={state.errors} className="text-xs text-rose-500 font-mono mt-1 block" />
+                                {errors.name && (
+                                    <span className="text-xs text-rose-500 font-mono mt-1 block">
+                                        {errors.name.message}
+                                    </span>
+                                )}
                             </div>
 
                             {/* Email Input Stack */}
@@ -133,14 +160,17 @@ export function Contact() {
                                     Email
                                 </label>
                                 <input
-                                    type="body"
+                                    type="email"
                                     id="email"
-                                    name="email"
-                                    required
-                                    placeholder="company name, role, or project details"
+                                    placeholder="name@company.com"
+                                    {...register('email')}
                                     className="w-full bg-[#0b0f19]/60 border border-zinc-900 rounded-xl px-4 py-3 sm:py-3.5 text-zinc-200 text-sm placeholder-zinc-700 focus:outline-hidden focus:border-[var(--PortfolioPurple)]/40 focus:bg-[#0b0f19] transition-all duration-200"
                                 />
-                                <ValidationError field="email" prefix="Email" errors={state.errors} className="text-xs text-rose-500 font-mono mt-1 block" />
+                                {errors.email && (
+                                    <span className="text-xs text-rose-500 font-mono mt-1 block">
+                                        {errors.email.message}
+                                    </span>
+                                )}
                             </div>
 
                         </div>
@@ -152,26 +182,36 @@ export function Contact() {
                             </label>
                             <textarea
                                 id="message"
-                                name="message"
-                                required
                                 rows={5}
                                 placeholder="Tell me about the role, team, or project you have in mind."
+                                {...register('message')}
                                 className="w-full bg-[#0b0f19]/60 border border-zinc-900 rounded-xl px-4 py-3 sm:py-3.5 text-zinc-200 text-sm placeholder-zinc-700 focus:outline-hidden focus:border-[var(--PortfolioPurple)]/40 focus:bg-[#0b0f19] resize-none transition-all duration-200"
                             />
-                            <ValidationError field="message" prefix="Message" errors={state.errors} className="text-xs text-rose-500 font-mono mt-1 block" />
+                            {errors.message && (
+                                <span className="text-xs text-rose-500 font-mono mt-1 block">
+                                    {errors.message.message}
+                                </span>
+                            )}
                         </div>
 
-                        {/* Custom Interactive Action Button with operational disabled fallback checks */}
+                        {/* Formspree Server-Side Error Catch */}
+                        {formspreeState.errors && Object.keys(formspreeState.errors).length > 0 && (
+                            <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-xs text-rose-400 font-mono">
+                                Server Error: Something went wrong tracking your submission on Formspree.
+                            </div>
+                        )}
+
+                        {/* Custom Interactive Action Button */}
                         <div className="pt-1">
                             <button
                                 type="submit"
-                                disabled={state.submitting}
+                                disabled={formspreeState.submitting}
                                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--PortfolioPurple)]/10 border border-[var(--PortfolioPurple)]/20 text-[var(--PortfoliohWhite)] text-sm font-bold tracking-wide hover:bg-[var(--PortfolioPurple)] transition-all duration-300 shadow-sm shadow-purple-500/5 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)] active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                             >
                                 <svg className="w-4 h-4 transform rotate-45 -translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
                                 </svg>
-                                <span>{state.submitting ? 'Sending...' : 'Send message'}</span>
+                                <span>{formspreeState.submitting ? 'Sending...' : 'Send message'}</span>
                             </button>
                         </div>
 
