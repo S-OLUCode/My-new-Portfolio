@@ -119,7 +119,7 @@ export function Nav() {
           </button>
 
           <a
-            href="/sayo-resume.pdf"
+            href="/Sayo_Ogunfunminiyi-Tayo_Resume three.pdf"
             download="Sayo_Ogunfunminiyi-Tayo_Resume three.pdf"
             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--PortfolioPurple)]/10 border border-[var(--PortfolioPurple)]/20 text-[var(--PortfoliohWhite)] text-sm font-bold tracking-wide hover:bg-[var(--PortfolioPurple)] transition-all duration-300 shadow-sm shadow-purple-500/5 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)] active:scale-98 cursor-pointer"
           >
